@@ -1,0 +1,959 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>MOUFEED'S WORLD 🌍</title>
+
+  <meta name="description"
+        content="Welcome to MOUFEED'S WORLD — programming, creative design, technology and future projects.">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    :root {
+      --bg: #080b16;
+      --bg2: #101527;
+      --card: #11182b;
+      --blue: #00eaff;
+      --blue2: #008cff;
+      --purple: #7c4dff;
+      --text: #ffffff;
+      --muted: #b7bdcc;
+      --border: rgba(0, 234, 255, 0.15);
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(
+          circle at 10% 10%,
+          rgba(0, 140, 255, 0.15),
+          transparent 30%
+        ),
+        radial-gradient(
+          circle at 90% 20%,
+          rgba(124, 77, 255, 0.12),
+          transparent 30%
+        ),
+        var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* =========================
+       NAVIGATION
+    ========================= */
+
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      background: rgba(8, 11, 22, 0.88);
+      backdrop-filter: blur(15px);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    nav {
+      width: 90%;
+      max-width: 1150px;
+      margin: auto;
+      min-height: 75px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: 900;
+      letter-spacing: 1px;
+      color: white;
+    }
+
+    .logo span {
+      color: var(--blue);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: #dce2ee;
+      font-size: 15px;
+      transition: 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: var(--blue);
+    }
+
+    .menu-btn {
+      display: none;
+      border: none;
+      background: transparent;
+      color: white;
+      font-size: 30px;
+      cursor: pointer;
+    }
+
+    /* =========================
+       HERO
+    ========================= */
+
+    .hero {
+      min-height: 100vh;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 120px 20px 70px;
+      position: relative;
+    }
+
+    .hero-content {
+      max-width: 850px;
+    }
+
+    .hello {
+      color: var(--blue);
+      font-weight: bold;
+      letter-spacing: 2px;
+      margin-bottom: 15px;
+      font-size: 14px;
+    }
+
+    .hero h1 {
+      font-size: clamp(42px, 8vw, 82px);
+      line-height: 1.05;
+      margin-bottom: 20px;
+      font-weight: 900;
+    }
+
+    .hero h1 span {
+      background: linear-gradient(
+        90deg,
+        var(--blue),
+        var(--purple)
+      );
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero p {
+      max-width: 680px;
+      margin: auto;
+      color: var(--muted);
+      font-size: 18px;
+    }
+
+    .hero-buttons {
+      margin-top: 35px;
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 14px 24px;
+      border-radius: 12px;
+      font-weight: bold;
+      transition: 0.3s;
+      border: 1px solid var(--border);
+    }
+
+    .btn-primary {
+      color: #001018;
+      background: var(--blue);
+      box-shadow: 0 0 25px rgba(0, 234, 255, 0.2);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 0 35px rgba(0, 234, 255, 0.4);
+    }
+
+    .btn-secondary {
+      color: white;
+      background: rgba(255,255,255,0.04);
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--blue);
+      color: var(--blue);
+      transform: translateY(-3px);
+    }
+
+    /* =========================
+       GENERAL SECTIONS
+    ========================= */
+
+    section {
+      width: 90%;
+      max-width: 1100px;
+      margin: auto;
+      padding: 90px 0;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 45px;
+    }
+
+    .section-title small {
+      color: var(--blue);
+      font-weight: bold;
+      letter-spacing: 2px;
+    }
+
+    .section-title h2 {
+      font-size: clamp(30px, 5vw, 45px);
+      margin-top: 8px;
+    }
+
+    .section-title p {
+      color: var(--muted);
+      margin-top: 10px;
+    }
+
+    /* =========================
+       ABOUT
+    ========================= */
+
+    .about-box {
+      padding: 40px;
+      border-radius: 25px;
+      background: linear-gradient(
+        145deg,
+        rgba(16, 21, 39, 0.95),
+        rgba(9, 14, 28, 0.95)
+      );
+      border: 1px solid var(--border);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+    }
+
+    .about-box h3 {
+      color: var(--blue);
+      font-size: 28px;
+      margin-bottom: 18px;
+    }
+
+    .about-box p {
+      color: var(--muted);
+      margin-bottom: 15px;
+      font-size: 16px;
+    }
+
+    /* =========================
+       PROJECTS
+    ========================= */
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .project-card {
+      padding: 30px;
+      border-radius: 20px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      transition: 0.35s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project-card::before {
+      content: "";
+      position: absolute;
+      width: 130px;
+      height: 130px;
+      background: var(--blue);
+      filter: blur(80px);
+      opacity: 0.08;
+      top: -50px;
+      right: -50px;
+    }
+
+    .project-card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(0,234,255,0.5);
+      box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+    }
+
+    .project-icon {
+      width: 58px;
+      height: 58px;
+      border-radius: 15px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: rgba(0,234,255,0.1);
+      font-size: 28px;
+      margin-bottom: 22px;
+    }
+
+    .project-card h3 {
+      font-size: 22px;
+      margin-bottom: 12px;
+    }
+
+    .project-card p {
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    /* =========================
+       SKILLS
+    ========================= */
+
+    .skills {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 30px;
+    }
+
+    .skill {
+      padding: 10px 16px;
+      border-radius: 30px;
+      background: rgba(0,234,255,0.07);
+      border: 1px solid var(--border);
+      color: #dcefff;
+      font-size: 14px;
+    }
+
+    /* =========================
+       CONTACT
+    ========================= */
+
+    .contact-wrapper {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 25px;
+    }
+
+    .contact-box {
+      padding: 40px;
+      border-radius: 25px;
+      background: #101527;
+      border: 1px solid var(--border);
+    }
+
+    .contact-box h3 {
+      font-size: 28px;
+      color: var(--blue);
+      margin-bottom: 15px;
+    }
+
+    .contact-box p {
+      color: var(--muted);
+      margin-bottom: 25px;
+    }
+
+    .contact-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .contact-link {
+      padding: 12px 17px;
+      border-radius: 10px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      transition: 0.3s;
+    }
+
+    .contact-link:hover {
+      color: var(--blue);
+      border-color: var(--blue);
+      transform: translateY(-2px);
+    }
+
+    /* =========================
+       FOOTER
+    ========================= */
+
+    footer {
+      border-top: 1px solid rgba(255,255,255,0.07);
+      padding: 30px 20px;
+      text-align: center;
+      color: var(--muted);
+      background: #070a13;
+    }
+
+    footer strong {
+      color: var(--blue);
+    }
+
+    /* =========================
+       ANIMATION
+    ========================= */
+
+    .fade-up {
+      animation: fadeUp 1s ease both;
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(25px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* =========================
+       MOBILE
+    ========================= */
+
+    @media (max-width: 800px) {
+
+      .menu-btn {
+        display: block;
+      }
+
+      .nav-links {
+        position: absolute;
+        top: 75px;
+        left: 5%;
+        width: 90%;
+        padding: 20px;
+        border-radius: 15px;
+        background: #0d1222;
+        border: 1px solid var(--border);
+        display: none;
+        flex-direction: column;
+        gap: 18px;
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .contact-wrapper {
+        grid-template-columns: 1fr;
+      }
+
+      .hero p {
+        font-size: 16px;
+      }
+
+      .about-box,
+      .contact-box {
+        padding: 28px 22px;
+      }
+    }
+
+    @media (max-width: 450px) {
+
+      .logo {
+        font-size: 20px;
+      }
+
+      .hero {
+        padding-top: 110px;
+      }
+
+      .hero h1 {
+        font-size: 43px;
+      }
+
+      .hero-buttons {
+        flex-direction: column;
+      }
+
+      .hero-buttons .btn {
+        width: 100%;
+      }
+
+      section {
+        padding: 70px 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- =========================
+       NAVIGATION
+  ========================= -->
+
+  <header>
+
+    <nav>
+
+      <a href="#home" class="logo">
+        MOUFEED<span>.</span>
+      </a>
+
+      <button
+        class="menu-btn"
+        onclick="toggleMenu()"
+        aria-label="Open menu">
+        ☰
+      </button>
+
+      <ul class="nav-links" id="navLinks">
+
+        <li>
+          <a href="#home" onclick="closeMenu()">Home</a>
+        </li>
+
+        <li>
+          <a href="#about" onclick="closeMenu()">About</a>
+        </li>
+
+        <li>
+          <a href="#projects" onclick="closeMenu()">Projects</a>
+        </li>
+
+        <li>
+          <a href="#contact" onclick="closeMenu()">Contact</a>
+        </li>
+
+      </ul>
+
+    </nav>
+
+  </header>
+
+
+  <!-- =========================
+       MAIN
+  ========================= -->
+
+  <main>
+
+    <!-- HERO -->
+
+    <section class="hero" id="home">
+
+      <div class="hero-content fade-up">
+
+        <div class="hello">
+          WELCOME TO MY DIGITAL WORLD
+        </div>
+
+        <h1>
+          Welcome to<br>
+          <span>MOUFEED'S WORLD 🌍</span>
+        </h1>
+
+        <p>
+          A place where creativity, technology and ideas come together.
+          I'm learning, creating and building my digital future
+          one project at a time.
+        </p>
+
+        <div class="hero-buttons">
+
+          <a
+            href="#projects"
+            class="btn btn-primary">
+            View My Projects 🚀
+          </a>
+
+          <a
+            href="#contact"
+            class="btn btn-secondary">
+            Contact Me
+          </a>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ABOUT -->
+
+    <section id="about">
+
+      <div class="section-title">
+
+        <small>WHO I AM</small>
+
+        <h2>About MOUFEED</h2>
+
+        <p>
+          A little introduction about me.
+        </p>
+
+      </div>
+
+
+      <div class="about-box">
+
+        <h3>
+          Hello, I'm MOUFEED 👋
+        </h3>
+
+        <p>
+          Welcome to my personal space on the internet.
+          I'm interested in technology, creativity, business
+          and learning new things.
+        </p>
+
+        <p>
+          This website is part of my journey as I learn how
+          to create, design and build things with technology.
+        </p>
+
+        <p>
+          I believe every great journey starts with one small step.
+          This is one of mine.
+        </p>
+
+
+        <div class="skills">
+
+          <span class="skill">
+            💻 Programming
+          </span>
+
+          <span class="skill">
+            🎨 Creative Design
+          </span>
+
+          <span class="skill">
+            📱 Technology
+          </span>
+
+          <span class="skill">
+            🚀 Innovation
+          </span>
+
+          <span class="skill">
+            📚 Learning
+          </span>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- PROJECTS -->
+
+    <section id="projects">
+
+      <div class="section-title">
+
+        <small>MY WORK</small>
+
+        <h2>My Projects 🚀</h2>
+
+        <p>
+          Some of the things I'm learning and building.
+        </p>
+
+      </div>
+
+
+      <div class="projects-grid">
+
+        <div class="project-card">
+
+          <div class="project-icon">
+            💻
+          </div>
+
+          <h3>
+            Programming
+          </h3>
+
+          <p>
+            Learning HTML, CSS and JavaScript while building
+            websites and experimenting with new ideas.
+          </p>
+
+        </div>
+
+
+        <div class="project-card">
+
+          <div class="project-icon">
+            🎨
+          </div>
+
+          <h3>
+            Creative Design
+          </h3>
+
+          <p>
+            Exploring digital creativity, visual design,
+            photography and content creation.
+          </p>
+
+        </div>
+
+
+        <div class="project-card">
+
+          <div class="project-icon">
+            🚀
+          </div>
+
+          <h3>
+            Future Projects
+          </h3>
+
+          <p>
+            More exciting projects are coming as I continue
+            learning, improving and turning ideas into reality.
+          </p>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- JOURNEY -->
+
+    <section>
+
+      <div class="section-title">
+
+        <small>MY JOURNEY</small>
+
+        <h2>
+          Learning & Growing 📈
+        </h2>
+
+        <p>
+          Every line of code is another step forward.
+        </p>
+
+      </div>
+
+
+      <div class="about-box">
+
+        <h3>
+          Think. Create. Improve. 🔥
+        </h3>
+
+        <p>
+          I'm currently developing my skills and discovering
+          what I can create with technology.
+        </p>
+
+        <p>
+          My goal is not to be perfect from the beginning.
+          My goal is to keep learning, keep building and
+          keep improving.
+        </p>
+
+        <p>
+          This website will continue growing as my skills grow.
+        </p>
+
+      </div>
+
+    </section>
+
+
+    <!-- CONTACT -->
+
+    <section id="contact">
+
+      <div class="section-title">
+
+        <small>GET IN TOUCH</small>
+
+        <h2>
+          Let's Connect 🤝
+        </h2>
+
+        <p>
+          Have an idea or want to work together?
+        </p>
+
+      </div>
+
+
+      <div class="contact-wrapper">
+
+
+        <!-- CONTACT INFORMATION -->
+
+        <div class="contact-box">
+
+          <h3>
+            📩 Get In Touch
+          </h3>
+
+          <p>
+            I'm always interested in learning, creating
+            and connecting with people.
+          </p>
+
+
+          <div class="contact-links">
+
+            <!-- EMAIL -->
+
+            <a
+              class="contact-link"
+              href="mailto:moufeed001@gmail.com">
+
+              📧 Email Me
+
+            </a>
+
+
+            <!-- WHATSAPP -->
+
+            <a
+              class="contact-link"
+              href="https://wa.me/2347071792522"
+              target="_blank"
+              rel="noopener noreferrer">
+
+              💬 WhatsApp Me
+
+            </a>
+
+          </div>
+
+        </div>
+
+
+        <!-- SOCIAL / JOURNEY -->
+
+        <div class="contact-box">
+
+          <h3>
+            🌍 Follow My Journey
+          </h3>
+
+          <p>
+            Follow along as I continue learning, creating
+            and sharing my journey.
+          </p>
+
+
+          <div class="contact-links">
+
+            <a
+              class="contact-link"
+              href="#home">
+
+              🏠 Home
+
+            </a>
+
+
+            <a
+              class="contact-link"
+              href="#projects">
+
+              🚀 Projects
+
+            </a>
+
+
+            <a
+              class="contact-link"
+              href="#about">
+
+              👨‍💻 About Me
+
+            </a>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- =========================
+       FOOTER
+  ========================= -->
+
+  <footer>
+
+    <p>
+      © 2026
+      <strong>MOUFEED</strong>.
+      All rights reserved.
+    </p>
+
+    <p>
+      Built with ❤️ and code.
+    </p>
+
+  </footer>
+
+
+  <!-- =========================
+       JAVASCRIPT
+  ========================= -->
+
+  <script>
+
+    function toggleMenu() {
+
+      const menu =
+        document.getElementById("navLinks");
+
+      menu.classList.toggle("active");
+
+    }
+
+
+    function closeMenu() {
+
+      const menu =
+        document.getElementById("navLinks");
+
+      menu.classList.remove("active");
+
+    }
+
+  </script>
+
+</body>
+</html>
