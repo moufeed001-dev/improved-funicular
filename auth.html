@@ -106,8 +106,7 @@ $("logout").onclick = () => signOut(auth);
 onAuthStateChanged(auth, user => {
   $("authView").classList.toggle("hidden", !!user);
   $("userView").classList.toggle("hidden", !user);
-  if (user) { $("who").textContent = "Signed in as " + user.email; show(""); }
+  if (user) { location.href = "index.html"; }
 });
 </script>
-</body>
-  </html>
+</body>          
