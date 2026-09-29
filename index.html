@@ -1,960 +1,737 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>MOUFEED'S WORLD 🌍</title>
-
-  <meta name="description"
-        content="Welcome to MOUFEED'S WORLD — programming, creative design, technology and future projects.">
-
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      scroll-behavior: smooth;
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MOUFEED — Digital Designer & Developer</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Figtree:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --primary: #0a0a0a;
+    --secondary: #1a1a1a;
+    --tertiary: #2d2d2d;
+    --accent: #ffd21f;
+    --accent-light: #ffe066;
+    --text: #f5f5f5;
+    --text-muted: #a0a0a0;
+    --border: #3a3a3a;
+  }
+  
+  * { box-sizing: border-box; }
+  
+  body {
+    margin: 0;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: var(--primary);
+    color: var(--text);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+  
+  header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 999;
+    background: rgba(10, 10, 10, 0.8);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  
+  nav {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 16px 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .logo {
+    font-size: 1.4rem;
+    font-weight: 900;
+    letter-spacing: -2px;
+    background: linear-gradient(135deg, var(--text) 0%, var(--accent) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .nav-menu {
+    display: flex;
+    gap: 32px;
+    align-items: center;
+  }
+  
+  .nav-menu a {
+    font-size: 0.95rem;
+    color: var(--text);
+    text-decoration: none;
+    position: relative;
+    font-weight: 500;
+    transition: color 0.3s;
+  }
+  
+  .nav-menu a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--accent);
+    transition: width 0.3s;
+  }
+  
+  .nav-menu a:hover {
+    color: var(--accent);
+  }
+  
+  .nav-menu a:hover::after {
+    width: 100%;
+  }
+  
+  .nav-btn {
+    padding: 11px 26px;
+    background: var(--accent);
+    color: var(--primary);
+    border: none;
+    border-radius: 8px;
+    font-weight: 700;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.3s;
+  }
+  
+  .nav-btn:hover {
+    background: var(--accent-light);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(255, 210, 31, 0.2);
+  }
+  
+  .hero {
+    margin-top: 80px;
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+    padding: 60px 32px;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(600px at 20% 30%, rgba(255, 210, 31, 0.15), transparent 80%),
+      radial-gradient(500px at 80% 70%, rgba(255, 210, 31, 0.08), transparent 80%);
+    z-index: -1;
+  }
+  
+  .hero-content {
+    max-width: 800px;
+    text-align: center;
+  }
+  
+  .hero-badge {
+    display: inline-block;
+    padding: 8px 16px;
+    background: rgba(255, 210, 31, 0.1);
+    border: 1px solid var(--accent);
+    border-radius: 20px;
+    font-size: 0.85rem;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 24px;
+  }
+  
+  .hero h1 {
+    font-size: 4rem;
+    font-weight: 900;
+    margin: 0 0 20px;
+    line-height: 1.1;
+    letter-spacing: -2px;
+  }
+  
+  .hero h1 .highlight {
+    background: linear-gradient(135deg, var(--accent) 0%, #ffb52e 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .hero p {
+    font-size: 1.2rem;
+    color: var(--text-muted);
+    margin: 0 0 40px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .hero-cta {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 60px;
+  }
+  
+  .btn {
+    padding: 14px 32px;
+    border: none;
+    border-radius: 8px;
+    font-weight: 700;
+    cursor: pointer;
+    font-size: 0.95rem;
+    transition: all 0.3s;
+    text-decoration: none;
+    display: inline-block;
+  }
+  
+  .btn-primary {
+    background: var(--accent);
+    color: var(--primary);
+  }
+  
+  .btn-primary:hover {
+    background: var(--accent-light);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 32px rgba(255, 210, 31, 0.25);
+  }
+  
+  .btn-secondary {
+    background: var(--secondary);
+    color: var(--text);
+    border: 1.5px solid var(--border);
+  }
+  
+  .btn-secondary:hover {
+    background: var(--tertiary);
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+  
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 32px;
+    max-width: 1200px;
+    margin: 0 auto 80px;
+    padding: 0 32px;
+  }
+  
+  .stat {
+    text-align: center;
+  }
+  
+  .stat-number {
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+  
+  .stat-label {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+  
+  .section {
+    padding: 100px 32px;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  
+  .section-header {
+    margin-bottom: 80px;
+  }
+  
+  .section-label {
+    font-size: 0.8rem;
+    color: var(--accent);
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  
+  .section h2 {
+    font-size: 3rem;
+    font-weight: 900;
+    margin: 0;
+    line-height: 1.2;
+    letter-spacing: -1px;
+  }
+  
+  .section-desc {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    margin-top: 16px;
+    max-width: 600px;
+  }
+  
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+  }
+  
+  .about-text h3 {
+    font-size: 1.8rem;
+    font-weight: 800;
+    margin: 0 0 16px;
+  }
+  
+  .about-text p {
+    font-size: 1rem;
+    color: var(--text-muted);
+    margin: 0 0 20px;
+    line-height: 1.8;
+  }
+  
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin-top: 32px;
+  }
+  
+  .skill-item {
+    padding: 16px;
+    background: var(--secondary);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    font-weight: 600;
+    transition: all 0.3s;
+  }
+  
+  .skill-item:hover {
+    background: var(--tertiary);
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+  
+  .about-highlight {
+    padding: 40px;
+    background: linear-gradient(135deg, rgba(255, 210, 31, 0.08) 0%, transparent 100%);
+    border: 1px solid var(--accent);
+    border-radius: 12px;
+  }
+  
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 32px;
+  }
+  
+  .project-card {
+    background: var(--secondary);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.3s;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .project-card:hover {
+    border-color: var(--accent);
+    background: var(--tertiary);
+    transform: translateY(-8px);
+  }
+  
+  .project-header {
+    padding: 32px;
+    background: linear-gradient(135deg, rgba(255, 210, 31, 0.08) 0%, transparent 100%);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  
+  .project-icon {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--primary);
+    border-radius: 10px;
+    font-size: 2rem;
+  }
+  
+  .project-info h3 {
+    font-size: 1.3rem;
+    font-weight: 800;
+    margin: 0;
+  }
+  
+  .project-info p {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin: 4px 0 0;
+  }
+  
+  .project-body {
+    padding: 32px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .project-desc {
+    color: var(--text-muted);
+    margin: 0 0 20px;
+    flex-grow: 1;
+  }
+  
+  .project-tech {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  
+  .tech-tag {
+    padding: 6px 12px;
+    background: var(--tertiary);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    font-size: 0.75rem;
+    color: var(--accent);
+    font-weight: 600;
+  }
+  
+  .journey-timeline {
+    max-width: 700px;
+    margin: 0 auto;
+  }
+  
+  .timeline-item {
+    padding-bottom: 40px;
+    margin-bottom: 40px;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+    padding-left: 40px;
+  }
+  
+  .timeline-item:last-child {
+    border-bottom: none;
+  }
+  
+  .timeline-dot {
+    width: 12px;
+    height: 12px;
+    background: var(--accent);
+    border-radius: 50%;
+    position: absolute;
+    left: 0;
+    top: 8px;
+  }
+  
+  .timeline-item h3 {
+    font-size: 1.2rem;
+    font-weight: 800;
+    margin: 0 0 8px;
+  }
+  
+  .timeline-item p {
+    color: var(--text-muted);
+    margin: 0;
+    line-height: 1.8;
+  }
+  
+  .contact-box {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 60px 40px;
+    background: linear-gradient(135deg, var(--secondary) 0%, var(--tertiary) 100%);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    text-align: center;
+  }
+  
+  .contact-box h3 {
+    font-size: 2rem;
+    font-weight: 800;
+    margin: 0 0 16px;
+  }
+  
+  .contact-box p {
+    color: var(--text-muted);
+    margin: 0 0 32px;
+    font-size: 1.05rem;
+  }
+  
+  footer {
+    padding: 40px 32px;
+    max-width: 1400px;
+    margin: 0 auto;
+    border-top: 1px solid var(--border);
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+  }
+  
+  @media (max-width: 1024px) {
+    .hero h1 { font-size: 3rem; }
+    .section h2 { font-size: 2.2rem; }
+    .about-grid { grid-template-columns: 1fr; }
+    .nav-menu { gap: 20px; }
+  }
+  
+  @media (max-width: 768px) {
+    .hero { margin-top: 60px; padding: 40px 20px; }
+    .hero h1 { font-size: 2rem; }
+    .hero p { font-size: 1rem; }
+    .section { padding: 60px 20px; }
+    .section h2 { font-size: 1.8rem; }
+    .nav-menu { gap: 16px; }
+    nav { padding: 12px 20px; }
+    .skills-grid { grid-template-columns: 1fr; }
+  }
+  
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
     }
-
-    :root {
-      --bg: #080b16;
-      --bg2: #101527;
-      --card: #11182b;
-      --blue: #00eaff;
-      --blue2: #008cff;
-      --purple: #7c4dff;
-      --text: #ffffff;
-      --muted: #b7bdcc;
-      --border: rgba(0, 234, 255, 0.15);
+    to {
+      opacity: 1;
+      transform: translateY(0);
     }
-
-    body {
-      font-family: Arial, Helvetica, sans-serif;
-      background:
-        radial-gradient(
-          circle at 10% 10%,
-          rgba(0, 140, 255, 0.15),
-          transparent 30%
-        ),
-        radial-gradient(
-          circle at 90% 20%,
-          rgba(124, 77, 255, 0.12),
-          transparent 30%
-        ),
-        var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-      overflow-x: hidden;
-    }
-
-    a {
-      text-decoration: none;
-      color: inherit;
-    }
-
-    /* =========================
-       NAVIGATION
-    ========================= */
-
-    header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      z-index: 1000;
-      background: rgba(8, 11, 22, 0.88);
-      backdrop-filter: blur(15px);
-      border-bottom: 1px solid rgba(255,255,255,0.06);
-    }
-
-    nav {
-      width: 90%;
-      max-width: 1150px;
-      margin: auto;
-      min-height: 75px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .logo {
-      font-size: 24px;
-      font-weight: 900;
-      letter-spacing: 1px;
-      color: white;
-    }
-
-    .logo span {
-      color: var(--blue);
-    }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 28px;
-      list-style: none;
-    }
-
-    .nav-links a {
-      color: #dce2ee;
-      font-size: 15px;
-      transition: 0.3s;
-    }
-
-    .nav-links a:hover {
-      color: var(--blue);
-    }
-
-    .menu-btn {
-      display: none;
-      border: none;
-      background: transparent;
-      color: white;
-      font-size: 30px;
-      cursor: pointer;
-    }
-
-    /* =========================
-       HERO
-    ========================= */
-
-    .hero {
-      min-height: 100vh;
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      padding: 120px 20px 70px;
-      position: relative;
-    }
-
-    .hero-content {
-      max-width: 850px;
-    }
-
-    .hello {
-      color: var(--blue);
-      font-weight: bold;
-      letter-spacing: 2px;
-      margin-bottom: 15px;
-      font-size: 14px;
-    }
-
-    .hero h1 {
-      font-size: clamp(42px, 8vw, 82px);
-      line-height: 1.05;
-      margin-bottom: 20px;
-      font-weight: 900;
-    }
-
-    .hero h1 span {
-      background: linear-gradient(
-        90deg,
-        var(--blue),
-        var(--purple)
-      );
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .hero p {
-      max-width: 680px;
-      margin: auto;
-      color: var(--muted);
-      font-size: 18px;
-    }
-
-    .hero-buttons {
-      margin-top: 35px;
-      display: flex;
-      justify-content: center;
-      gap: 15px;
-      flex-wrap: wrap;
-    }
-
-    .btn {
-      display: inline-block;
-      padding: 14px 24px;
-      border-radius: 12px;
-      font-weight: bold;
-      transition: 0.3s;
-      border: 1px solid var(--border);
-    }
-
-    .btn-primary {
-      color: #001018;
-      background: var(--blue);
-      box-shadow: 0 0 25px rgba(0, 234, 255, 0.2);
-    }
-
-    .btn-primary:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 0 35px rgba(0, 234, 255, 0.4);
-    }
-
-    .btn-secondary {
-      color: white;
-      background: rgba(255,255,255,0.04);
-    }
-
-    .btn-secondary:hover {
-      border-color: var(--blue);
-      color: var(--blue);
-      transform: translateY(-3px);
-    }
-
-    /* =========================
-       GENERAL SECTIONS
-    ========================= */
-
-    section {
-      width: 90%;
-      max-width: 1100px;
-      margin: auto;
-      padding: 90px 0;
-    }
-
-    .section-title {
-      text-align: center;
-      margin-bottom: 45px;
-    }
-
-    .section-title small {
-      color: var(--blue);
-      font-weight: bold;
-      letter-spacing: 2px;
-    }
-
-    .section-title h2 {
-      font-size: clamp(30px, 5vw, 45px);
-      margin-top: 8px;
-    }
-
-    .section-title p {
-      color: var(--muted);
-      margin-top: 10px;
-    }
-
-    /* =========================
-       ABOUT
-    ========================= */
-
-    .about-box {
-      padding: 40px;
-      border-radius: 25px;
-      background: linear-gradient(
-        145deg,
-        rgba(16, 21, 39, 0.95),
-        rgba(9, 14, 28, 0.95)
-      );
-      border: 1px solid var(--border);
-      box-shadow: 0 20px 60px rgba(0,0,0,0.25);
-    }
-
-    .about-box h3 {
-      color: var(--blue);
-      font-size: 28px;
-      margin-bottom: 18px;
-    }
-
-    .about-box p {
-      color: var(--muted);
-      margin-bottom: 15px;
-      font-size: 16px;
-    }
-
-    /* =========================
-       PROJECTS
-    ========================= */
-
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 22px;
-    }
-
-    .project-card {
-      padding: 30px;
-      border-radius: 20px;
-      background: var(--card);
-      border: 1px solid var(--border);
-      transition: 0.35s;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .project-card::before {
-      content: "";
-      position: absolute;
-      width: 130px;
-      height: 130px;
-      background: var(--blue);
-      filter: blur(80px);
-      opacity: 0.08;
-      top: -50px;
-      right: -50px;
-    }
-
-    .project-card:hover {
-      transform: translateY(-8px);
-      border-color: rgba(0,234,255,0.5);
-      box-shadow: 0 15px 40px rgba(0,0,0,0.3);
-    }
-
-    .project-icon {
-      width: 58px;
-      height: 58px;
-      border-radius: 15px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: rgba(0,234,255,0.1);
-      font-size: 28px;
-      margin-bottom: 22px;
-    }
-
-    .project-card h3 {
-      font-size: 22px;
-      margin-bottom: 12px;
-    }
-
-    .project-card p {
-      color: var(--muted);
-      font-size: 15px;
-    }
-
-    /* =========================
-       SKILLS
-    ========================= */
-
-    .skills {
-      display: flex;
-      justify-content: center;
-      gap: 12px;
-      flex-wrap: wrap;
-      margin-top: 30px;
-    }
-
-    .skill {
-      padding: 10px 16px;
-      border-radius: 30px;
-      background: rgba(0,234,255,0.07);
-      border: 1px solid var(--border);
-      color: #dcefff;
-      font-size: 14px;
-    }
-
-    /* =========================
-       CONTACT
-    ========================= */
-
-    .contact-wrapper {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 25px;
-    }
-
-    .contact-box {
-      padding: 40px;
-      border-radius: 25px;
-      background: #101527;
-      border: 1px solid var(--border);
-    }
-
-    .contact-box h3 {
-      font-size: 28px;
-      color: var(--blue);
-      margin-bottom: 15px;
-    }
-
-    .contact-box p {
-      color: var(--muted);
-      margin-bottom: 25px;
-    }
-
-    .contact-links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
-
-    .contact-link {
-      padding: 12px 17px;
-      border-radius: 10px;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.08);
-      transition: 0.3s;
-    }
-
-    .contact-link:hover {
-      color: var(--blue);
-      border-color: var(--blue);
-      transform: translateY(-2px);
-    }
-
-    /* =========================
-       FOOTER
-    ========================= */
-
-    footer {
-      border-top: 1px solid rgba(255,255,255,0.07);
-      padding: 30px 20px;
-      text-align: center;
-      color: var(--muted);
-      background: #070a13;
-    }
-
-    footer strong {
-      color: var(--blue);
-    }
-
-    /* =========================
-       ANIMATION
-    ========================= */
-
-    .fade-up {
-      animation: fadeUp 1s ease both;
-    }
-
-    @keyframes fadeUp {
-      from {
-        opacity: 0;
-        transform: translateY(25px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    /* =========================
-       MOBILE
-    ========================= */
-
-    @media (max-width: 800px) {
-
-      .menu-btn {
-        display: block;
-      }
-
-      .nav-links {
-        position: absolute;
-        top: 75px;
-        left: 5%;
-        width: 90%;
-        padding: 20px;
-        border-radius: 15px;
-        background: #0d1222;
-        border: 1px solid var(--border);
-        display: none;
-        flex-direction: column;
-        gap: 18px;
-      }
-
-      .nav-links.active {
-        display: flex;
-      }
-
-      .projects-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .contact-wrapper {
-        grid-template-columns: 1fr;
-      }
-
-      .hero p {
-        font-size: 16px;
-      }
-
-      .about-box,
-      .contact-box {
-        padding: 28px 22px;
-      }
-    }
-
-    @media (max-width: 450px) {
-
-      .logo {
-        font-size: 20px;
-      }
-
-      .hero {
-        padding-top: 110px;
-      }
-
-      .hero h1 {
-        font-size: 43px;
-      }
-
-      .hero-buttons {
-        flex-direction: column;
-      }
-
-      .hero-buttons .btn {
-        width: 100%;
-      }
-
-      section {
-        padding: 70px 0;
-      }
-    }
-  </style>
+  }
+  
+  .section {
+    animation: fadeInUp 0.8s ease-out;
+    animation-timeline: view();
+    animation-range: entry 0% cover 30%;
+  }
+</style>
 </head>
-
 <body>
 
-  <!-- =========================
-       NAVIGATION
-  ========================= -->
+<header>
+  <nav>
+    <div class="logo">MOUFEED</div>
+    <div class="nav-menu">
+      <a href="#about">About</a>
+      <a href="#work">Work</a>
+      <a href="#journey">Journey</a>
+      <a href="#contact">Contact</a>
+      <button id="authBtn" class="nav-btn">Sign In</button>
+    </div>
+  </nav>
+</header>
 
-  <header>
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-badge">Welcome to my digital studio</div>
+    <h1>Building the <span class="highlight">Future</span> with Code & Design</h1>
+    <p>I'm a digital creator, passionate about crafting meaningful experiences. Every project is an opportunity to innovate, learn, and push boundaries.</p>
+    <div class="hero-cta">
+      <button class="btn btn-primary" onclick="document.getElementById('work').scrollIntoView({behavior:'smooth'})">Explore My Work</button>
+      <button class="btn btn-secondary" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Get In Touch</button>
+    </div>
+  </div>
+</section>
 
-    <nav>
+<div class="stats">
+  <div class="stat">
+    <div class="stat-number">50+</div>
+    <div class="stat-label">Projects Built</div>
+  </div>
+  <div class="stat">
+    <div class="stat-number">2+</div>
+    <div class="stat-label">Years Learning</div>
+  </div>
+  <div class="stat">
+    <div class="stat-number">100%</div>
+    <div class="stat-label">Commitment</div>
+  </div>
+</div>
 
-      <a href="#home" class="logo">
-        MOUFEED<span>.</span>
-      </a>
+<section class="section" id="about">
+  <div class="section-header">
+    <div class="section-label">About Me</div>
+    <h2>Who I Am</h2>
+    <p class="section-desc">A passionate developer and designer on a mission to create digital experiences that matter</p>
+  </div>
+  
+  <div class="about-grid">
+    <div class="about-text">
+      <h3>Hello, I'm MOUFEED 👋</h3>
+      <p>I'm a digital creator with a passion for building beautiful, functional experiences. I believe in the power of thoughtful design and clean code to solve real problems.</p>
+      <p>My journey in tech has taught me that continuous learning is the key to staying relevant. Every project challenges me to grow, every feedback helps me improve.</p>
+      <p>When I'm not coding or designing, you'll find me exploring new technologies, brainstorming ideas, or contributing to the creative community.</p>
+      <div class="skills-grid">
+        <div class="skill-item">💻 Frontend Dev</div>
+        <div class="skill-item">🎨 UI Design</div>
+        <div class="skill-item">⚡ Performance</div>
+        <div class="skill-item">🔧 Problem Solving</div>
+        <div class="skill-item">📱 Responsive</div>
+        <div class="skill-item">🚀 Innovation</div>
+      </div>
+    </div>
+    
+    <div class="about-highlight">
+      <h3 style="margin-top: 0;">My Philosophy</h3>
+      <p>"Great design isn't about how it looks, it's about how it works. Great code isn't about how complex it is, it's about how clear it is. I strive for both."</p>
+      <hr style="border: none; border-top: 1px solid rgba(255,210,31,0.3); margin: 24px 0;">
+      <p style="font-size: 0.9rem; margin-bottom: 0;">I believe in building with purpose, designing with intention, and coding with clarity.</p>
+    </div>
+  </div>
+</section>
 
-      <button
-        class="menu-btn"
-        onclick="toggleMenu()"
-        aria-label="Open menu">
-        ☰
-      </button>
-
-      <ul class="nav-links" id="navLinks">
-
-        <li>
-          <a href="#home" onclick="closeMenu()">Home</a>
-        </li>
-
-        <li>
-          <a href="#about" onclick="closeMenu()">About</a>
-        </li>
-
-        <li>
-          <a href="#projects" onclick="closeMenu()">Projects</a>
-        </li>
-
-        <li>
-          <a href="#contact" onclick="closeMenu()">Contact</a>
-        </li>
-
-      </ul>
-
-    </nav>
-
-  </header>
-
-
-  <!-- =========================
-       MAIN
-  ========================= -->
-
-  <main>
-
-    <!-- HERO -->
-
-    <section class="hero" id="home">
-
-      <div class="hero-content fade-up">
-
-        <div class="hello">
-          WELCOME TO MY DIGITAL WORLD
+<section class="section" id="work">
+  <div class="section-header">
+    <div class="section-label">My Work</div>
+    <h2>Featured Projects</h2>
+    <p class="section-desc">A selection of projects that showcase my skills in design, development, and problem-solving</p>
+  </div>
+  
+  <div class="projects-grid">
+    <div class="project-card">
+      <div class="project-header">
+        <div class="project-icon">💻</div>
+        <div class="project-info">
+          <h3>Web Development</h3>
+          <p>Frontend Mastery</p>
         </div>
-
-        <h1>
-          Welcome to<br>
-          <span>MOUFEED'S WORLD 🌍</span>
-        </h1>
-
-        <p>
-          A place where creativity, technology and ideas come together.
-          I'm learning, creating and building my digital future
-          one project at a time.
-        </p>
-
-        <div class="hero-buttons">
-
-          <a
-            href="#projects"
-            class="btn btn-primary">
-            View My Projects 🚀
-          </a>
-
-          <a
-            href="#contact"
-            class="btn btn-secondary">
-            Contact Me
-          </a>
-
+      </div>
+      <div class="project-body">
+        <p class="project-desc">Building responsive, high-performance web applications using modern frameworks and best practices. Focused on user experience and clean architecture.</p>
+        <div class="project-tech">
+          <span class="tech-tag">HTML</span>
+          <span class="tech-tag">CSS</span>
+          <span class="tech-tag">JavaScript</span>
         </div>
-
       </div>
-
-    </section>
-
-
-    <!-- ABOUT -->
-
-    <section id="about">
-
-      <div class="section-title">
-
-        <small>WHO I AM</small>
-
-        <h2>About MOUFEED</h2>
-
-        <p>
-          A little introduction about me.
-        </p>
-
-      </div>
-
-
-      <div class="about-box">
-
-        <h3>
-          Hello, I'm MOUFEED 👋
-        </h3>
-
-        <p>
-          Welcome to my personal space on the internet.
-          I'm interested in technology, creativity, business
-          and learning new things.
-        </p>
-
-        <p>
-          This website is part of my journey as I learn how
-          to create, design and build things with technology.
-        </p>
-
-        <p>
-          I believe every great journey starts with one small step.
-          This is one of mine.
-        </p>
-
-
-        <div class="skills">
-
-          <span class="skill">
-            💻 Programming
-          </span>
-
-          <span class="skill">
-            🎨 Creative Design
-          </span>
-
-          <span class="skill">
-            📱 Technology
-          </span>
-
-          <span class="skill">
-            🚀 Innovation
-          </span>
-
-          <span class="skill">
-            📚 Learning
-          </span>
-
+    </div>
+    
+    <div class="project-card">
+      <div class="project-header">
+        <div class="project-icon">🎨</div>
+        <div class="project-info">
+          <h3>UI/UX Design</h3>
+          <p>Creative Solutions</p>
         </div>
-
       </div>
-
-    </section>
-
-
-    <!-- PROJECTS -->
-
-    <section id="projects">
-
-      <div class="section-title">
-
-        <small>MY WORK</small>
-
-        <h2>My Projects 🚀</h2>
-
-        <p>
-          Some of the things I'm learning and building.
-        </p>
-
-      </div>
-
-
-      <div class="projects-grid">
-
-        <div class="project-card">
-
-          <div class="project-icon">
-            💻
-          </div>
-
-          <h3>
-            Programming
-          </h3>
-
-          <p>
-            Learning HTML, CSS and JavaScript while building
-            websites and experimenting with new ideas.
-          </p>
-
+      <div class="project-body">
+        <p class="project-desc">Designing intuitive interfaces that users love. Every pixel is purposeful, every interaction is intentional. From wireframes to polished designs.</p>
+        <div class="project-tech">
+          <span class="tech-tag">Design</span>
+          <span class="tech-tag">UX</span>
+          <span class="tech-tag">Figma</span>
         </div>
-
-
-        <div class="project-card">
-
-          <div class="project-icon">
-            🎨
-          </div>
-
-          <h3>
-            Creative Design
-          </h3>
-
-          <p>
-            Exploring digital creativity, visual design,
-            photography and content creation.
-          </p>
-
+      </div>
+    </div>
+    
+    <div class="project-card">
+      <div class="project-header">
+        <div class="project-icon">🚀</div>
+        <div class="project-info">
+          <h3>Innovation Lab</h3>
+          <p>Experiments & Ideas</p>
         </div>
-
-
-        <div class="project-card">
-
-          <div class="project-icon">
-            🚀
-          </div>
-
-          <h3>
-            Future Projects
-          </h3>
-
-          <p>
-            More exciting projects are coming as I continue
-            learning, improving and turning ideas into reality.
-          </p>
-
+      </div>
+      <div class="project-body">
+        <p class="project-desc">Exploring new technologies and methodologies. Testing ideas, learning frameworks, and pushing the boundaries of what's possible on the web.</p>
+        <div class="project-tech">
+          <span class="tech-tag">Experimental</span>
+          <span class="tech-tag">Learning</span>
+          <span class="tech-tag">Growth</span>
         </div>
-
       </div>
-
-    </section>
-
-
-    <!-- JOURNEY -->
-
-    <section>
-
-      <div class="section-title">
-
-        <small>MY JOURNEY</small>
-
-        <h2>
-          Learning & Growing 📈
-        </h2>
-
-        <p>
-          Every line of code is another step forward.
-        </p>
-
-      </div>
-
-
-      <div class="about-box">
-
-        <h3>
-          Think. Create. Improve. 🔥
-        </h3>
-
-        <p>
-          I'm currently developing my skills and discovering
-          what I can create with technology.
-        </p>
-
-        <p>
-          My goal is not to be perfect from the beginning.
-          My goal is to keep learning, keep building and
-          keep improving.
-        </p>
-
-        <p>
-          This website will continue growing as my skills grow.
-        </p>
-
-      </div>
-
-    </section>
-
-
-    <!-- CONTACT -->
-
-    <section id="contact">
-
-      <div class="section-title">
-
-        <small>GET IN TOUCH</small>
-
-        <h2>
-          Let's Connect 🤝
-        </h2>
-
-        <p>
-          Have an idea or want to work together?
-        </p>
-
-      </div>
-
-
-      <div class="contact-wrapper">
-
-
-        <!-- CONTACT INFORMATION -->
-
-        <div class="contact-box">
-
-          <h3>
-            📩 Get In Touch
-          </h3>
-
-          <p>
-            I'm always interested in learning, creating
-            and connecting with people.
-          </p>
-
-
-          <div class="contact-links">
-
-            <!-- EMAIL -->
-
-            <a
-              class="contact-link"
-              href="mailto:moufeed001@gmail.com">
-
-              📧 Email Me
-
-            </a>
-
-
-            <!-- WHATSAPP -->
-
-            <a
-              class="contact-link"
-              href="https://wa.me/2347071792522"
-              target="_blank"
-              rel="noopener noreferrer">
-
-              💬 WhatsApp Me
-
-            </a>
-
-          </div>
-
-        </div>
-
-
-        <!-- SOCIAL / JOURNEY -->
-
-        <div class="contact-box">
-
-          <h3>
-            🌍 Follow My Journey
-          </h3>
-
-          <p>
-            Follow along as I continue learning, creating
-            and sharing my journey.
-          </p>
-
-
-          <div class="contact-links">
-
-            <a
-              class="contact-link"
-              href="#home">
-
-              🏠 Home
-
-            </a>
-
-
-            <a
-              class="contact-link"
-              href="#projects">
-
-              🚀 Projects
-
-            </a>
-
-
-            <a
-              class="contact-link"
-              href="#about">
-
-              👨‍💻 About Me
-
-            </a>
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </section>
-
-  </main>
-
-
-  <!-- =========================
-       FOOTER
-  ========================= -->
-
-  <footer>
-
-    <p>
-      © 2026
-      <strong>MOUFEED</strong>.
-      All rights reserved.
-    </p>
-
-    <p>
-      Built with ❤️ and code.
-    </p>
-
-  </footer>
-
-
-  <!-- =========================
-       JAVASCRIPT
-  ========================= -->
-
-  <script>
-
-    function toggleMenu() {
-
-      const menu =
-        document.getElementById("navLinks");
-
-      menu.classList.toggle("active");
-
-    }
-
-
-    function closeMenu() {
-
-      const menu =
-        document.getElementById("navLinks");
-
-      menu.classList.remove("active");
-
-    }
-
-  </script>
-
-<a href="auth.html" style="position:fixed;bottom:16px;right:16px;z-index:2000;background:#00eaff;color:#080b16;padding:10px 16px;border-radius:10px;font-weight:700;">Log in</a>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="journey">
+  <div class="section-header">
+    <div class="section-label">My Journey</div>
+    <h2>Growth & Evolution</h2>
+    <p class="section-desc">My path from beginner to builder, marked by curiosity, determination, and continuous improvement</p>
+  </div>
+  
+  <div class="journey-timeline">
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <h3>The Beginning</h3>
+      <p>Started my journey with HTML and CSS basics. Learned the fundamentals, built my first projects, and discovered the joy of creating with code.</p>
+    </div>
+    
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <h3>Exploring Design</h3>
+      <p>Realized that beautiful code needs beautiful design. Dove into UI/UX principles, learned design tools, and started thinking about user experience.</p>
+    </div>
+    
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <h3>Building Professionally</h3>
+      <p>Transitioned from learning to creating real solutions. Built projects that solve problems, help people, and make an impact in the digital world.</p>
+    </div>
+    
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <h3>The Future</h3>
+      <p>Continuing to push boundaries, explore emerging technologies, and build experiences that matter. The journey never stops, and neither do I.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="contact">
+  <div class="section-header">
+    <div class="section-label">Let's Connect</div>
+    <h2>Start Something Amazing</h2>
+  </div>
+  
+  <div class="contact-box">
+    <h3>Have an idea? Let's create it together</h3>
+    <p>I'm always excited to collaborate on new projects, explore innovative ideas, or just chat about technology and design.</p>
+    <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+      <a href="mailto:hello@moufeed.com" class="btn btn-primary" style="text-decoration: none;">Send Me an Email</a>
+      <button class="btn btn-secondary">Schedule a Call</button>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>&copy; 2026 MOUFEED. Crafted with passion, built with purpose.</p>
+  <p id="authStatus" style="margin-top: 8px; color: var(--accent); font-size: 0.85rem;"></p>
+</footer>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
+import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyBYUaHyYAT4c4cUJrITAUjQOV5oqLu69P0",
+  authDomain: "moufeed-world.firebaseapp.com",
+  projectId: "moufeed-world",
+  appId: "1:258552792150:web:63e42d87b24cfc9ef367f7"
+};
+
+const auth = getAuth(initializeApp(firebaseConfig));
+const authBtn = document.getElementById("authBtn");
+const authStatus = document.getElementById("authStatus");
+
+onAuthStateChanged(auth, user => {
+  if (user) {
+    authBtn.textContent = "Sign Out";
+    authBtn.onclick = () => signOut(auth);
+    authStatus.textContent = `Logged in as ${user.displayName || user.email} ✓`;
+  } else {
+    authBtn.textContent = "Sign In";
+    authBtn.onclick = () => location.href = "auth.html";
+    authStatus.textContent = "";
+  }
+});
+</script>
 </body>
 </html>
+         
